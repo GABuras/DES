@@ -386,8 +386,8 @@ public class DES {
         // Right Plaintext
         StringBuilder RPT = new StringBuilder(plainBinaryBlock.substring(32, 64));
         
-        System.out.printf("\tLeft input: ", LPT);
-        System.out.printf("\tRightinput: ", RPT);
+        System.out.printf("\tLeft input: %s\n", LPT);
+        System.out.printf("\tRightinput: %s\n", RPT);
         
         // Mangled text (temporary storage)
         StringBuilder mangled = new StringBuilder();
@@ -473,7 +473,10 @@ public class DES {
         System.out.printf("\tPlaintext binary: %s\n", plainBinary);
         
         // Check the integrity of the 64-bit key
-        System.out.printf("\t%s", checkParity64(key64));
+        String integrityCheck = checkParity64(key64);
+        System.out.printf("\t%s", integrityCheck);
+        if (integrityCheck.equals("ERROR: 64-bit key failed parity integrity check\n"))
+            return "Encryption stopped because the 64-bit key is bad.";
         
         // Derive the 56-bit key from the 64-bit key, removing parity bits
         String key56 = getKey56(key64);
@@ -513,7 +516,10 @@ public class DES {
         System.out.printf("\tCiphertext binary: %s\n", cipherBinary);
         
         // Check the integrity of the 64-bit key
-        System.out.printf("\t%s", checkParity64(key64));
+        String integrityCheck = checkParity64(key64);
+        System.out.printf("\t%s", integrityCheck);
+        if (integrityCheck.equals("ERROR: 64-bit key failed parity integrity check\n"))
+            return "Decryption stopped because the 64-bit key is bad.";
         
         // Derive the 56-bit key from the 64-bit key, removing parity bits
         String key56 = getKey56(key64);
