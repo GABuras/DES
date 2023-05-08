@@ -386,8 +386,8 @@ public class DES {
         // Right Plaintext
         StringBuilder RPT = new StringBuilder(plainBinaryBlock.substring(32, 64));
         
-        System.out.printf("\tLeft input: %s\n", LPT);
-        System.out.printf("\tRightinput: %s\n", RPT);
+        System.out.printf("\tLeft half: %s\n", LPT);
+        System.out.printf("\tRight half: %s\n", RPT);
         
         // Mangled text (temporary storage)
         StringBuilder mangled = new StringBuilder();
@@ -447,10 +447,10 @@ public class DES {
             // Reset mangledtext
             mangled.setLength(0);
             
-            System.out.printf("Round %s: \n", i + 1);
+            System.out.printf("Round %d: \n", i + 1);
 
-            System.out.printf("\tLeft input: %s\n", LPT);
-            System.out.printf("\tRight input: %s\n", RPT);
+            System.out.printf("\tLeft half: %s\n", LPT);
+            System.out.printf("\tRight half: %s\n", RPT);
         }
 
         // Rejoin the left ciphertext binary and the right ciphertext binary
@@ -568,6 +568,8 @@ public class DES {
     }
 
     public static void main(String[] args) {
+        System.out.println("DES implementation demonstration: \n");
+        
         String plaintext = "Hello World!";
         System.out.printf("Plaintext: %s\n\n", plaintext);
         
